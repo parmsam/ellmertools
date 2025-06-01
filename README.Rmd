@@ -50,7 +50,7 @@ library(ellmer)
 ```{r get-weather}
 #| eval: FALSE
 chat <- chat_openai(model = "gpt-4o-mini")
-chat$register_tool(tool_get_nws_forecast)
+chat$register_tool(tool_get_current_forecast)
 chat$chat("Give me a weather update for Chicago for tonight. What should I wear?")
 #> For tonight in Chicago, the forecast is partly cloudy with a temperature around 
 #> 54°F. There is no expected rain, so you should dress comfortably.

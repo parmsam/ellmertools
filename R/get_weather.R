@@ -13,10 +13,10 @@
 #'
 #' @examples
 #' \dontrun{
-#' get_nws_forecast(40.8860529, -81.4164969, "general", "short")
-#' get_nws_forecast(40.8860529, -81.4164969, "hourly", "detailed")
+#' get_current_forecast(40.8860529, -81.4164969, "general", "short")
+#' get_current_forecast(40.8860529, -81.4164969, "hourly", "detailed")
 #' }
-get_nws_forecast <- function(lat, lon, forecast_type = "general", forecast_detail = "short") {
+get_current_forecast <- function(lat, lon, forecast_type = "general", forecast_detail = "short") {
   stopifnot(is.numeric(lat), is.numeric(lon))
   forecast_type <- rlang::arg_match(forecast_type, c("general", "hourly"))
   forecast_detail <- rlang::arg_match(forecast_detail, c("detailed", "short"))
@@ -68,11 +68,11 @@ get_nws_forecast <- function(lat, lon, forecast_type = "general", forecast_detai
   return(forecast_resp)
 }
 
-#' Tools to help register the `get_nws_forecast` function with ellmer
+#' Tools to help register the `get_current_forecast` function with ellmer
 #'
 #' @export
-tool_get_nws_forecast <- ellmer::tool(
-  get_nws_forecast,
+tool_get_current_forecast <- ellmer::tool(
+  get_current_forecast,
   "Fetches weather forecast data from the National Weather Service
 based on latitude and longitude.",
   lat = ellmer::type_number(
