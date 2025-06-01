@@ -18,9 +18,13 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of ellmertools is to provide a set of useful tool functions that you can easily register with [ellmer](https://ellmer.tidyverse.org/). Here's a great explanation of tool calling from the ellmer documentation: 
+The goal of ellmertools is to provide a set of useful tool functions that you can easily register with [ellmer](https://ellmer.tidyverse.org/). Tools are functions that can be called by a chat model to perform specific tasks, such as fetching data or performing calculations. This package provides a set of general tools that can be registered with ellmer to enhance the capabilities of your chat model.
+
+Here's a great explanation of tool calling from the [ellmer vignette](https://ellmer.tidyverse.org/articles/tool-calling.html) that goes into more detail about how tool calling works: 
 
 > "When making a chat request to the chat model, the caller advertises one or more tools (defined by their function name, description, and a list of expected arguments), and the chat model can choose to respond with one or more “tool calls”. These tool calls are requests from the chat model to the caller to execute the function with the given arguments; the caller is expected to execute the functions and “return” the results by submitting another chat request with the conversation so far, plus the results. The chat model can then use those results in formulating its response, or, it may decide to make additional tool calls... Note that the chat model does not directly execute any external tools! It only makes requests for the caller to execute them."
+
+![](https://ellmer.tidyverse.org/articles/tool-calling-right.svg) 
 
 ## Installation
 
@@ -78,4 +82,5 @@ chat$chat("What day is it?")
 chat <- chat_openai(model = "gpt-4o-mini")
 chat$register_tool(tool_get_current_location)
 chat$chat("Where am I right now? What is my approximate location?")
+#> Your approximate location is Beverly Hills, California, USA. The postal code is 90210, and you are in the America/Los_Angeles time zone.
 ```

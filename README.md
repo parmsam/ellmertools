@@ -8,8 +8,15 @@
 
 The goal of ellmertools is to provide a set of useful tool functions
 that you can easily register with
-[ellmer](https://ellmer.tidyverse.org/). Here’s a great explanation of
-tool calling from the ellmer documentation:
+[ellmer](https://ellmer.tidyverse.org/). Tools are functions that can be
+called by a chat model to perform specific tasks, such as fetching data
+or performing calculations. This package provides a set of general tools
+that can be registered with ellmer to enhance the capabilities of your
+chat model.
+
+Here’s a great explanation of tool calling from the [ellmer
+vignette](https://ellmer.tidyverse.org/articles/tool-calling.html) that
+goes into more detail about how tool calling works:
 
 > “When making a chat request to the chat model, the caller advertises
 > one or more tools (defined by their function name, description, and a
@@ -23,6 +30,8 @@ tool calling from the ellmer documentation:
 > additional tool calls… Note that the chat model does not directly
 > execute any external tools! It only makes requests for the caller to
 > execute them.”
+
+![](https://ellmer.tidyverse.org/articles/tool-calling-right.svg)
 
 ## Installation
 
@@ -77,4 +86,5 @@ chat$chat("What day is it?")
 chat <- chat_openai(model = "gpt-4o-mini")
 chat$register_tool(tool_get_current_location)
 chat$chat("Where am I right now? What is my approximate location?")
+#> Your approximate location is Beverly Hills, California, USA. The postal code is 90210, and you are in the America/Los_Angeles time zone.
 ```
