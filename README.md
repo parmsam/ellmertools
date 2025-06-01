@@ -16,7 +16,10 @@ chat model.
 
 Here’s a great explanation of tool calling from the [ellmer
 vignette](https://ellmer.tidyverse.org/articles/tool-calling.html) that
-goes into more detail about how tool calling works:
+goes into more detail about how tool calling works. I encourage you to
+read [the
+vignette](https://ellmer.tidyverse.org/articles/tool-calling.html) to
+understand how to use tools in ellmer.
 
 > “When making a chat request to the chat model, the caller advertises
 > one or more tools (defined by their function name, description, and a
@@ -30,8 +33,6 @@ goes into more detail about how tool calling works:
 > additional tool calls… Note that the chat model does not directly
 > execute any external tools! It only makes requests for the caller to
 > execute them.”
-
-![](https://ellmer.tidyverse.org/articles/tool-calling-right.svg)
 
 ## Installation
 
