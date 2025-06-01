@@ -53,32 +53,39 @@ library(ellmertools)
 library(ellmer)
 ```
 
-### Get weather to help you plan your day
+### Get weather forecast
 
 ``` r
 chat <- chat_openai(model = "gpt-4o-mini")
 chat$register_tool(tool_get_nws_forecast)
 chat$chat("Give me a weather update for Chicago for tonight. What should I wear?")
-#> For tonight in Chicago, the forecast is partly cloudy with a temperature around 
-#> 54°F. There is no expected rain, so you should dress comfortably.
-#> 
-#> ### Suggested Outfit:
-#> - A light jacket or sweater to keep warm in the cooler evening temperatures.
-#> - Comfortable pants or jeans.
-#> - A light scarf might be nice if you tend to get chilly in the evening. 
-#> 
-#> Enjoy your evening!
+# > For tonight in Chicago, the forecast is partly cloudy with a temperature
+# around > 54°F. There is no expected rain, so you should dress comfortably. >
+# > ### Suggested Outfit: > - A light jacket or sweater to keep warm in the
+# cooler evening temperatures. > - Comfortable pants or jeans. > - A light
+# scarf might be nice if you tend to get chilly in the evening.  > > Enjoy your
+# evening!
 ```
 
-### Get your current time
+### Get current temperature
+
+``` r
+chat <- chat_openai(model = "gpt-4o-mini")
+chat$register_tool(tool_get_current_temperature)
+chat$chat("What is the current temperature in New York City in Fahrenheit?")
+# > The current temperature in New York City is approximately 19.1°C, which is
+# about 66.4°F.
+```
+
+### Get current date/time
 
 ``` r
 chat <- chat_openai(model = "gpt-4o-mini")
 chat$register_tool(tool_get_current_time)
 chat$chat("What time is in New York right now? I need to know the current time.")
-#> The current time in New York is 12:03 PM EDT on  June 1, 2025.
+# > The current time in New York is 12:03 PM EDT on June 1, 2025.
 chat$chat("What day is it?")
-#> Today is June 1, 2025.
+# > Today is June 1, 2025.
 ```
 
 ### Get current location
@@ -87,5 +94,6 @@ chat$chat("What day is it?")
 chat <- chat_openai(model = "gpt-4o-mini")
 chat$register_tool(tool_get_current_location)
 chat$chat("Where am I right now? What is my approximate location?")
-#> Your approximate location is Beverly Hills, California, USA. The postal code is 90210, and you are in the America/Los_Angeles time zone.
+# > Your approximate location is Beverly Hills, California, USA. The postal
+# code is 90210, and you are in the America/Los_Angeles time zone.
 ```

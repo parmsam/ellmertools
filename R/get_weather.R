@@ -92,3 +92,55 @@ based on latitude and longitude.",
     required = FALSE
   )
 )
+
+#' Get current temperature and wind speed from Open-Meteo
+#'
+#' Retrieves the current temperature and wind speed at 2 meters above ground
+#' for a given latitude and longitude using the Open-Meteo API.
+#'
+#' @param latitude Numeric. Latitude of the location.
+#' @param longitude Numeric. Longitude of the location.
+#'
+#' @return A list containing current weather data (e.g., temperature, wind speed).
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' get_current_temperature(40.886, -81.416)
+#' }
+get_current_temperature <- function(latitude, longitude) {
+  stopifnot(is.numeric(latitude), is.numeric(longitude))
+
+  base_url <- "https://api.open-meteo.com/v1/forecast"
+
+  req <- httr2::request(base_url) |>
+    httr2::req_url_query(
+      latitude = latitude,
+      longitude = longitude,
+      current = "temperature_2m,wind_speed_10m",
+      hourly = "temperature_2m,relative_humidity_2m,wind_speed_10m"
+    ) |>
+    httr2::req_user_agent("openmeteo-r-client (https://example.org)") |>
+    httr2::req_perform()
+
+  resp <- httr2::resp_body_json(req)
+
+  return(resp$current)
+}
+
+
+#' Tools to help register the `get_current_temperature` function with ellmer
+#'
+#' @export
+tool_get_current_temperature <- ellmer::tool(
+  get_current_temperature,
+  "Fetches current temperature and wind speed at 2 meters above ground for a given latitude and longitude using the Open-Meteo API.",
+  latitude = ellmer::type_number(
+    "Latitude in decimal degrees of the location.",
+    required = TRUE
+  ),
+  longitude = ellmer::type_number(
+    "Longitude in decimal degrees of the location.",
+    required = TRUE
+  )
+)

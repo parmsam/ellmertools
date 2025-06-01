@@ -9,7 +9,9 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  out.width = "100%",
+  tidy.opts = list(width.cutoff = 80), 
+  tidy = TRUE
 )
 ```
 
@@ -43,7 +45,7 @@ library(ellmertools)
 library(ellmer)
 ```
 
-### Get weather to help you plan your day
+### Get weather forecast
 
 ```{r get-weather}
 #| eval: FALSE
@@ -60,8 +62,17 @@ chat$chat("Give me a weather update for Chicago for tonight. What should I wear?
 #> 
 #> Enjoy your evening!
 ```
+### Get current temperature
 
-### Get your current time
+```{r get-temperature}
+#| eval: FALSE
+chat <- chat_openai(model = "gpt-4o-mini")
+chat$register_tool(tool_get_current_temperature)
+chat$chat("What is the current temperature in New York City in Fahrenheit?")
+#> The current temperature in New York City is approximately 19.1°C, which is  about 66.4°F.
+```
+
+### Get current date/time
 
 ```{r get-current-time}
 #| eval: FALSE
