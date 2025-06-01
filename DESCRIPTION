@@ -1,11 +1,18 @@
 Package: ellmertools
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Collection Of Custom Tool Functions For Ellmer
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: 
+    person("Sam", "Parmar", , "parmartsam@gmail.com", role = c("aut", "cre"))
+Description: A collection of custom tool functions for the ellmer R package, designed to enhance functionality and streamline workflows.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Imports: 
+    httr2,
+    purrr,
+    rlang,
+    tibble
+Suggested:
+    ellmer
+RoxygenNote: 7.3.1
