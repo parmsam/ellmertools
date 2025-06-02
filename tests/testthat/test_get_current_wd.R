@@ -1,0 +1,12 @@
+test_that("get_current_wd returns a JSON string containing a known file", {
+  skip_if_not_installed("dir2json")
+  tmp_dir <- tempfile()
+  dir.create(tmp_dir)
+  old_dir <- setwd(tmp_dir)
+  on.exit(setwd(old_dir), add = TRUE)
+  on.exit(unlink(tmp_dir, recursive = TRUE), add = TRUE)
+  writeLines("abc", "test.txt")
+  json <- get_current_wd()
+  expect_true(is.character(json))
+  expect_true(grepl("test.txt", json))
+})
