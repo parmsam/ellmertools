@@ -157,3 +157,39 @@ bookmark_read("random_names")
 #> [1] "1. Avery\n2. Mason\n3. Harper\n4. Logan\n5. Skylar"
 setwd(old_wd)
 ```
+
+### Extract R code chunks
+
+``` r
+chat <- chat_openai(model = "gpt-4o-mini")
+md_response <- chat$chat("Give me a short markdown based example that shows how plot a scatter plot in R using ggplot2. Please use R code chunks.")
+cat(extract_r_code_chunks(md_response))
+#> # Load the ggplot2 package
+#> library(ggplot2)
+#> 
+#> # Create a scatter plot using the mtcars dataset
+#> ggplot(data = mtcars, aes(x = wt, y = mpg)) +
+#>   geom_point(color = "blue", size = 3) +
+#>   labs(title = "Scatter Plot of Weight vs MPG",
+#>        x = "Weight (1000 lbs)",
+#>        y = "Miles Per Gallon (MPG)") +
+#>   theme_minimal()
+```
+
+### Run R code
+
+``` r
+chat <- chat_openai(model = "gpt-4o-mini")
+chat$register_tool(tool_run_r_code)
+chat$chat("Run this R code: mean(1:50)")
+#> The result of the R code `mean(1:50)` is **25.5**.
+```
+
+### Call a mini chat
+
+``` r
+chat <- chat_openai(model = "gpt-4o-mini")
+chat$register_tool(tool_call_mini_chat)
+chat$chat("What is the capital of France? Use the `tool_call_mini_chat` tool to answer this question.")
+#> The capital of France is Paris.
+```
