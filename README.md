@@ -59,12 +59,15 @@ library(ellmer)
 chat <- chat_openai(model = "gpt-4o-mini")
 chat$register_tool(tool_get_current_forecast)
 chat$chat("Give me a weather update for Chicago for tonight. What should I wear?")
-# > For tonight in Chicago, the forecast is partly cloudy with a temperature
-# around > 54°F. There is no expected rain, so you should dress comfortably. >
-# > ### Suggested Outfit: > - A light jacket or sweater to keep warm in the
-# cooler evening temperatures. > - Comfortable pants or jeans. > - A light
-# scarf might be nice if you tend to get chilly in the evening.  > > Enjoy your
-# evening!
+#> For tonight in Chicago, the forecast is partly cloudy with a temperature around 
+#> 54°F. There is no expected rain, so you should dress comfortably.
+#> 
+#> ### Suggested Outfit:
+#> - A light jacket or sweater to keep warm in the cooler evening temperatures.
+#> - Comfortable pants or jeans.
+#> - A light scarf might be nice if you tend to get chilly in the evening. 
+#> 
+#> Enjoy your evening!
 ```
 
 ### Get temperature
@@ -73,8 +76,7 @@ chat$chat("Give me a weather update for Chicago for tonight. What should I wear?
 chat <- chat_openai(model = "gpt-4o-mini")
 chat$register_tool(tool_get_current_temperature)
 chat$chat("What is the current temperature in New York City in Fahrenheit?")
-# > The current temperature in New York City is approximately 19.1°C, which is
-# about 66.4°F.
+#> The current temperature in New York City is approximately 19.1°C, which is  about 66.4°F.
 ```
 
 ### Get date/time
@@ -83,9 +85,9 @@ chat$chat("What is the current temperature in New York City in Fahrenheit?")
 chat <- chat_openai(model = "gpt-4o-mini")
 chat$register_tool(tool_get_current_time)
 chat$chat("What time is in New York right now? I need to know the current time.")
-# > The current time in New York is 12:03 PM EDT on June 1, 2025.
+#> The current time in New York is 12:03 PM EDT on  June 1, 2025.
 chat$chat("What day is it?")
-# > Today is June 1, 2025.
+#> Today is June 1, 2025.
 ```
 
 ### Get location
@@ -94,8 +96,7 @@ chat$chat("What day is it?")
 chat <- chat_openai(model = "gpt-4o-mini")
 chat$register_tool(tool_get_current_location)
 chat$chat("Where am I right now? What is my approximate location?")
-# > Your approximate location is Beverly Hills, California, USA. The postal
-# code is 90210, and you are in the America/Los_Angeles time zone.
+#> Your approximate location is Beverly Hills, California, USA. The postal code is 90210, and you are in the America/Los_Angeles time zone.
 ```
 
 ### Get working directory structure and contents
@@ -111,9 +112,10 @@ chat <- chat_openai(model = "gpt-4o-mini")
 chat$register_tool(tool_get_current_wd)
 chat$chat("What's in my current working directory? Can you list the files in it?")
 setwd(old_wd)
-# > Your current working directory contains the following files: > > 1.
-# **test1.txt**: This file contains the text 'This is a test file.' > 2.
-# **test2.txt**: This file contains the text 'This is another test file.'
+#> Your current working directory contains the following files:
+#> 
+#> 1. **test1.txt**: This file contains the text "This is a test file."
+#> 2. **test2.txt**: This file contains the text "This is another test file."
 ```
 
 ### Bookmarking
@@ -131,18 +133,27 @@ chat$register_tool(tool_bookmark_list)
 chat$register_tool(tool_bookmark_read)
 
 chat$chat("Give me give 5 random names and bookmark them in a list called random_names.")
-# > I've generated and bookmarked a list of random names under the bookmark
-# 'random_names'. Here they are: > > 1. Avery > 2. Mason > 3. Harper > 4. Logan
-# > 5. Skylar > > If you need anything else, just let me know!
+#> I've generated and bookmarked a list of random names under the bookmark "random_names". Here they are:
+#> 
+#> 1. Avery
+#> 2. Mason
+#> 3. Harper
+#> 4. Logan
+#> 5. Skylar
+#> 
+#> If you need anything else, just let me know!
 chat$chat("Please list my bookmarks.")
-# > Here are your bookmarks: > > 1. person_name > 2. random_names > > Let me
-# know if you need further assistance!
+#> Here are your bookmarks:                                       
+#> 
+#> 1. person_name
+#> 2. random_names
+#> 
+#> Let me know if you need further assistance!
 chat$chat("Please read the person_name bookmark. What does it say?")
-# > The 'person_name' bookmark contains the name: **Sam**. If you need anything
-# else, feel free to ask!
+#> The "person_name" bookmark contains the name: **Sam**. If you need anything else, feel free to ask!
 bookmark_list()
-# > [1] 'person_name' 'random_names'
+#> [1] "person_name"  "random_names"
 bookmark_read("random_names")
-# > [1] '1. Avery\n2. Mason\n3. Harper\n4. Logan\n5. Skylar'
+#> [1] "1. Avery\n2. Mason\n3. Harper\n4. Logan\n5. Skylar"
 setwd(old_wd)
 ```
