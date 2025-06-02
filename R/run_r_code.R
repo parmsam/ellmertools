@@ -1,7 +1,7 @@
 #' Run R Code
 #'
 #' @description This function executes R code provided as a string and returns the result.
-#' @pararm code_string A string containing the R code to execute.
+#' @param code_string A string containing the R code to execute.
 #'
 #' @return The result of the executed R code, or an error message if the execution fails.
 #' @examples

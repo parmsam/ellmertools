@@ -190,6 +190,6 @@ chat$chat("Run this R code: mean(1:50)")
 #| eval: FALSE
 chat <- chat_openai(model = "gpt-4o-mini")
 chat$register_tool(tool_call_mini_chat)
-chat$chat("What is the capital of France? Use the `tool_call_mini_chat` tool to answer this question.")
-#> The capital of France is Paris.
+chat$chat("Use the `tool_call_mini_chat` tool to answer this question. What is the capital of France?")
+#> Using the tool, the capital of France is confirmed to be Paris.
 ```

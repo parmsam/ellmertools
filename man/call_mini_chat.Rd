@@ -15,6 +15,10 @@ call_mini_chat(
 \item{prompt}{A character string containing the user prompt to send.}
 
 \item{system_prompt}{(Optional) A character string to use as the system prompt for the chat instance.}
+
+\item{.model}{The model to use for the chat, defaulting to "gpt-4o-mini".}
+
+\item{.chat}{The chat function to use, defaulting to `ellmer::chat_openai`.}
 }
 \value{
 A character string containing the response from the GPT-4o mini model.

@@ -6,6 +6,9 @@
 \usage{
 run_r_code(code_string)
 }
+\arguments{
+\item{code_string}{A string containing the R code to execute.}
+}
 \value{
 The result of the executed R code, or an error message if the execution fails.
 }
