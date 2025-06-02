@@ -67,7 +67,7 @@ chat$chat("Give me a weather update for Chicago for tonight. What should I wear?
 # evening!
 ```
 
-### Get current temperature
+### Get temperature
 
 ``` r
 chat <- chat_openai(model = "gpt-4o-mini")
@@ -77,7 +77,7 @@ chat$chat("What is the current temperature in New York City in Fahrenheit?")
 # about 66.4°F.
 ```
 
-### Get current date/time
+### Get date/time
 
 ``` r
 chat <- chat_openai(model = "gpt-4o-mini")
@@ -88,7 +88,7 @@ chat$chat("What day is it?")
 # > Today is June 1, 2025.
 ```
 
-### Get current location
+### Get location
 
 ``` r
 chat <- chat_openai(model = "gpt-4o-mini")
@@ -98,7 +98,7 @@ chat$chat("Where am I right now? What is my approximate location?")
 # code is 90210, and you are in the America/Los_Angeles time zone.
 ```
 
-### Get current working directory
+### Get working directory structure and contents
 
 ``` r
 old_wd <- getwd()
