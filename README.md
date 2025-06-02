@@ -115,3 +115,34 @@ setwd(old_wd)
 # **test1.txt**: This file contains the text 'This is a test file.' > 2.
 # **test2.txt**: This file contains the text 'This is another test file.'
 ```
+
+### Bookmarking
+
+``` r
+old_wd <- getwd()
+temp_dir <- tempdir()
+setwd(temp_dir)
+
+bookmark_save("person_name", "Sam")
+chat <- chat_openai(model = "gpt-4o-mini")
+
+chat$register_tool(tool_bookmark_save)
+chat$register_tool(tool_bookmark_list)
+chat$register_tool(tool_bookmark_read)
+
+chat$chat("Give me give 5 random names and bookmark them in a list called random_names.")
+# > I've generated and bookmarked a list of random names under the bookmark
+# 'random_names'. Here they are: > > 1. Avery > 2. Mason > 3. Harper > 4. Logan
+# > 5. Skylar > > If you need anything else, just let me know!
+chat$chat("Please list my bookmarks.")
+# > Here are your bookmarks: > > 1. person_name > 2. random_names > > Let me
+# know if you need further assistance!
+chat$chat("Please read the person_name bookmark. What does it say?")
+# > The 'person_name' bookmark contains the name: **Sam**. If you need anything
+# else, feel free to ask!
+bookmark_list()
+# > [1] 'person_name' 'random_names'
+bookmark_read("random_names")
+# > [1] '1. Avery\n2. Mason\n3. Harper\n4. Logan\n5. Skylar'
+setwd(old_wd)
+```

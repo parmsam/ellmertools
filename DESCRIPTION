@@ -11,6 +11,7 @@ LazyData: true
 Imports: 
     dir2json,
     httr2,
+    pins,
     purrr,
     rlang,
     tibble
