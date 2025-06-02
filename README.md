@@ -97,3 +97,21 @@ chat$chat("Where am I right now? What is my approximate location?")
 # > Your approximate location is Beverly Hills, California, USA. The postal
 # code is 90210, and you are in the America/Los_Angeles time zone.
 ```
+
+### Get current working directory
+
+``` r
+old_wd <- getwd()
+temp_dir <- tempdir()
+setwd(temp_dir)
+# add example files into the temporary directory
+writeLines(c("This is a test file."), file.path(temp_dir, "test1.txt"))
+writeLines(c("This is another test file."), file.path(temp_dir, "test2.txt"))
+chat <- chat_openai(model = "gpt-4o-mini")
+chat$register_tool(tool_get_current_wd)
+chat$chat("What's in my current working directory? Can you list the files in it?")
+setwd(old_wd)
+# > Your current working directory contains the following files: > > 1.
+# **test1.txt**: This file contains the text 'This is a test file.' > 2.
+# **test2.txt**: This file contains the text 'This is another test file.'
+```
