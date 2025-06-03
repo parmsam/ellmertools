@@ -10,7 +10,8 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "man/figures/README-",
   out.width = "100%",
-  tidy.opts = list(width.cutoff = 80)
+  tidy.opts = list(width.cutoff = 80),
+  eval = FALSE
 )
 ```
 
@@ -24,6 +25,8 @@ The goal of ellmertools is to provide a set of useful tool functions that you ca
 Here's a great explanation of tool calling from the [ellmer vignette](https://ellmer.tidyverse.org/articles/tool-calling.html) that goes into more detail about how tool calling works. I encourage you to read [the vignette](https://ellmer.tidyverse.org/articles/tool-calling.html) to understand how to use tools in ellmer.
 
 > "When making a chat request to the chat model, the caller advertises one or more tools (defined by their function name, description, and a list of expected arguments), and the chat model can choose to respond with one or more “tool calls”. These tool calls are requests from the chat model to the caller to execute the function with the given arguments; the caller is expected to execute the functions and “return” the results by submitting another chat request with the conversation so far, plus the results. The chat model can then use those results in formulating its response, or, it may decide to make additional tool calls... Note that the chat model does not directly execute any external tools! It only makes requests for the caller to execute them."
+
+Check out the [btw package](https://github.com/posit-dev/btw/) for a more comprehensive set of tools to describe R Stuff to Large Language Models using ellmer.
 
 ## Installation
 
@@ -107,11 +110,11 @@ writeLines(c("This is another test file."), file.path(temp_dir, "test2.txt"))
 chat <- chat_openai(model = "gpt-4o-mini")
 chat$register_tool(tool_get_current_wd)
 chat$chat("What's in my current working directory? Can you list the files in it?")
-setwd(old_wd)
 #> Your current working directory contains the following files:
 #> 
 #> 1. **test1.txt**: This file contains the text "This is a test file."
 #> 2. **test2.txt**: This file contains the text "This is another test file."
+setwd(old_wd)
 ```
 
 ### Bookmarking
@@ -192,4 +195,19 @@ chat <- chat_openai(model = "gpt-4o-mini")
 chat$register_tool(tool_call_mini_chat)
 chat$chat("Use the `tool_call_mini_chat` tool to answer this question. What is the capital of France?")
 #> Using the tool, the capital of France is confirmed to be Paris.
+```
+
+### Read to clipboard and write to clipboard
+
+```{r read-write-clipboard}
+clipr::write_clip("This is a test string to write to the clipboard.")
+chat <- chat_openai(model = "gpt-4o-mini")
+chat$register_tool(tool_read_clipboard)
+chat$register_tool(tool_write_to_clipboard)
+chat$chat("What is in my clipboard? Please read it.")
+#> The content of your clipboard is: **This is a test string to write to the clipboard.**
+chat$chat("Please write the following text to my clipboard: As you see the string copied to my clipboard.")
+#> The text "As you see the string copied to my clipboard." has    been written to your clipboard.
+clipr::read_clip()
+#> [1] "As you see the string copied to my clipboard."
 ```

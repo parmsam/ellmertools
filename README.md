@@ -34,6 +34,10 @@ understand how to use tools in ellmer.
 > execute any external tools! It only makes requests for the caller to
 > execute them.”
 
+Check out the [btw package](https://github.com/posit-dev/btw/) for a
+more comprehensive set of tools to describe R Stuff to Large Language
+Models using ellmer.
+
 ## Installation
 
 You can install the development version of ellmertools from
@@ -111,11 +115,11 @@ writeLines(c("This is another test file."), file.path(temp_dir, "test2.txt"))
 chat <- chat_openai(model = "gpt-4o-mini")
 chat$register_tool(tool_get_current_wd)
 chat$chat("What's in my current working directory? Can you list the files in it?")
-setwd(old_wd)
 #> Your current working directory contains the following files:
 #> 
 #> 1. **test1.txt**: This file contains the text "This is a test file."
 #> 2. **test2.txt**: This file contains the text "This is another test file."
+setwd(old_wd)
 ```
 
 ### Bookmarking
@@ -192,4 +196,19 @@ chat <- chat_openai(model = "gpt-4o-mini")
 chat$register_tool(tool_call_mini_chat)
 chat$chat("Use the `tool_call_mini_chat` tool to answer this question. What is the capital of France?")
 #> Using the tool, the capital of France is confirmed to be Paris.
+```
+
+### Read to clipboard and write to clipboard
+
+``` r
+clipr::write_clip("This is a test string to write to the clipboard.")
+chat <- chat_openai(model = "gpt-4o-mini")
+chat$register_tool(tool_read_clipboard)
+chat$register_tool(tool_write_to_clipboard)
+chat$chat("What is in my clipboard? Please read it.")
+#> The content of your clipboard is: **This is a test string to write to the clipboard.**
+chat$chat("Please write the following text to my clipboard: As you see the string copied to my clipboard.")
+#> The text "As you see the string copied to my clipboard." has    been written to your clipboard.
+clipr::read_clip()
+#> [1] "As you see the string copied to my clipboard."
 ```
