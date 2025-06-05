@@ -212,3 +212,73 @@ chat$chat("Please write the following text to my clipboard: As you see the strin
 clipr::read_clip()
 #> [1] "As you see the string copied to my clipboard."
 ```
+
+### DuckDuckGo Search Results and News
+
+``` r
+chat <- chat_openai(model = "gpt-4o-mini")
+chat$register_tool(tool_duckduckgo_news)
+chat$chat("Please search the latest news on SpaceX using DuckDuckGo. Keep your response short in a list of the top 3 news headlines.")
+
+#> Here are the top 3 latest news headlines on SpaceX:            
+#> 
+#> 1. **Elon Musk Reveals How Much Money SpaceX Will Make This Year** - [Read 
+#> more](https://observer.com/2025/06/elon-musk-spacex-revenue-2025/)
+#> 2. **SpaceX launches Starlink satellite stack from Vandenberg Space Force 
+#> Base (photos)** - [Read 
+#> more](https://www.msn.com/en-us/technology/space-exploration/spacex-launches-starli#> nk-satellite-stack-from-vandenberg-space-forrce-base-photos/ar-AA1G7wTL)
+#> 3. **SpaceX Now Selling a Much-Requested Starlink Power Accessory** - [Read 
+#> more](https://www.msn.com/en-us/news/technology/spacex-now-selling-a-much-requested#> -starlink-power-accessory/ar-AA1GagfB)
+```
+
+### DuckDuckGo Instant Answers
+
+``` r
+chat <- chat_openai(model = "gpt-4o-mini")
+chat$register_tool(tool_duckduckgo_answer)
+chat$chat("What is R programming? Please get the information from DuckDuckGo Instant Answers API. Confirm if you got it from the API tool.")
+
+#> R is a programming language primarily used for statistical     
+#> computing and data visualization. It has gained popularity in 
+#> various fields, including data mining, bioinformatics, and data 
+#> analysis/data science. The core R language is supplemented by 
+#> many extension software packages that provide reusable code, 
+#> documentation, and sample data. R is open-source and falls under
+#> the GNU Project, licensed under the GNU General Public License. 
+#> It is primarily written in C, Fortran, and R itself. Executables
+#> for various operating systems are available, and as an 
+#> interpreted language, R features a native command line interface
+#> along with several third-party graphical user interfaces, such 
+#> as RStudio and Jupyter.
+#> 
+#> This information was obtained from the DuckDuckGo Instant 
+#> Answers API.
+```
+
+### Wikipedia
+
+``` r
+chat <- chat_openai(model = "gpt-4o-mini")
+chat$register_tool(tool_wikipedia_get_page_summary)
+chat$chat("Please get the summary of the Wikipedia page for R programming language. Confirm if you got it from the `tool_wikipedia_get_page_summary` API tool.")
+
+#> I got the summary from the `tool_007` API tool. Here is the summary:
+#> 
+#> R is a programming language for statistical computing and data visualization. 
+#> It has been adopted in the fields of data mining, bioinformatics, and data 
+#> analysis/data science.
+```
+
+### Retreive content from a URL
+
+``` r
+chat <- chat_openai(model = "gpt-4o-mini")
+chat$register_tool(tool_retrieve_url_content)
+chat$chat("Please retrieve the content from the URL https://parmsam.github.io/quarto-site/ and summarize it. Confirm if you got it from the `tool_retrieve_url_content` API tool.")
+#> I retrieved the content from the URL using the `tool_retrieve_url_content` 
+#> API tool. Here's a summary of the content:
+#> 
+#> The page is a personal website for Sam Parmar, a data scientist focused on 
+#> improving global health through critical thinking and problem-solving. It 
+#> includes links to his GitHub, LinkedIn, and Twitter profiles...
+```

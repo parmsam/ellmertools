@@ -34,8 +34,8 @@ get_current_location <- function(api_endpoint = "https://ipinfo.io/json") {
 #' @param x A list (e.g., API response)
 #' @param fields Character vector of field names to extract
 #' @param default Default value to return if a field does not exist in `x`
-#'
 #' @return A named list of only the existing fields
+#' @keywords internal
 pluck_existing_fields <- function(x, fields, default = NA) {
   present <- fields[fields %in% names(x)]
   out <- purrr::map(present, ~ purrr::pluck(x, .x, .default = default))
