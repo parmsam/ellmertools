@@ -239,18 +239,6 @@ DuckDuckGoSearch <- R6::R6Class(
   )
 )
 
-
-#' Internal utility: Provide a default value if the first argument is NULL
-#'
-#' @param a First value to check for NULL
-#' @param b Value to return if `a` is NULL
-#' @return `a` if not NULL, otherwise `b`
-#' @keywords internal
-#'
-#' @examples \dontrun{
-#' NULL %||% "default"
-#' 5 %||% "default"
-#' }
 `%||%` <- function(a, b) if (!is.null(a)) a else b
 
 #' Tool to search DuckDuckGo for text and return results
