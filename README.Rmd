@@ -270,7 +270,7 @@ chat$chat("Please get the summary of the Wikipedia page for R programming langua
 #> analysis/data science.
 ```
 
-### Retreive content from a URL
+### Retrieve content from a URL
 
 ```{r retrieve-url-content}
 chat <- chat_openai(model = "gpt-4o-mini")
