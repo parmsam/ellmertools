@@ -16,11 +16,16 @@
 #' call_mini_chat("Summarize this text.", system_prompt = "You are a helpful assistant.")
 #' }
 #' @export
-call_mini_chat <- function(prompt, system_prompt = NA, .model = "gpt-4o-mini", .chat = ellmer::chat_openai) {
+call_mini_chat <- function(prompt, system_prompt = NA, .model = "gpt-4o-mini", .chat = ellmer::chat_openai, .tools = list()) {
   chat <- .chat(model = .model, echo = FALSE)
   # Set the system prompt if provided
   if (!missing(system_prompt)) {
     chat$set_system_prompt(system_prompt)
+  }
+  if (length(.tools) != 0) {
+    for (tool in .tools) {
+      chat$register_tool(tool)
+    }
   }
   response <- chat$chat(prompt)
   return(response)

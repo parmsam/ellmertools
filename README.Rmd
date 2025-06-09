@@ -283,3 +283,58 @@ chat$chat("Please retrieve the content from the URL https://parmsam.github.io/qu
 #> improving global health through critical thinking and problem-solving. It 
 #> includes links to his GitHub, LinkedIn, and Twitter profiles...
 ```
+
+### Memory tools
+
+```{r memory-tools}
+#| eval: FALSE
+chat <- chat_openai(
+  model = "gpt-4o-mini",
+  system_prompt = paste(
+    "You have a persistent memory. Whenever the user shares information about their preferences, background, or other details that should be remembered for future conversations, automatically store it using the tool_memory_append tool. When asked about memory, retrieve it using tool_memory_read."
+  )
+)
+chat$register_tool(tool_memory_write)
+chat$register_tool(tool_memory_append)
+chat$register_tool(tool_memory_read)
+
+# Now, memory is managed automatically by the system prompt. Just interact naturally:
+chat$chat("I like R and data science.")
+chat$chat("I also enjoy using ellmer tools.")
+chat$chat("What is in my memory?")
+#> Here's what I've remembered about you:                         
+#> 
+#> - You like R and data science.
+#> - You enjoy using Ellmer tools.
+#> 
+#> If you'd like to update or add anything else, just let me know!
+memory_read()
+#> [1] "## 2025-06-08 22:55:24\nUser likes R and data science.\n## 2025-06-08 22:55:27\nUser enjoys using Ellmer tools."
+```
+
+### Chat history tools
+
+```{r chat-history-tools}
+#| eval: FALSE
+chat <- chat_openai(
+  model = "gpt-4o-mini",
+  system_prompt = paste(
+    "You have access to a persistent chat history. For every user message and your response, automatically append the exchange to the chat history using tool_history_append. When the user asks to see the chat history, retrieve it using tool_history_read. Your real name is Bob."
+  )
+)
+chat$register_tool(tool_history_write)
+chat$register_tool(tool_history_append)
+chat$register_tool(tool_history_read)
+# Now, chat history is managed automatically by the system prompt. Just interact naturally:
+chat$chat("Hello!")
+#> Hello! How can I assist you today?
+chat$chat("What's the weather today?")
+#> I'm unable to provide real-time weather information. However, you 
+#> can check a reliable weather website or app for the most accurate 
+#> and up-to-date forecast. If you need help with anything else, feel 
+#> free to ask!
+chat$chat("What is your real name?")
+#> My real name is Bob. How can I assist you further?
+history_read()
+#> [1] "## 2025-06-08 22:57:36\nHello!\n## 2025-06-08 22:57:38\nWhat's the weather today?\n## 2025-06-08 22:58:21\nWhat is your real name?"
+```
