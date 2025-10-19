@@ -2,10 +2,13 @@
 #'
 #' @export
 tool_retrieve_url_content <- ellmer::tool(
-  ragnar::read_as_markdown,
-  "Read in URL content as Markdown",
-  x = ellmer::type_string(
-      "The URL to read content from. The content will be returned as a Markdown string.",
-      required = TRUE
+  \(url) ragnar::read_as_markdown(path = url),
+  name = "retrieve_url_content",
+  description = "Read in URL content as Markdown",
+  arguments = list(
+    url = ellmer::type_string(
+        "The URL to read content from. The content will be returned as a Markdown string.",
+        required = TRUE
+    )
   )
 )

@@ -11,9 +11,12 @@ get_current_time <- function(tz = "UTC") {
 #' @export
 tool_get_current_time <- ellmer::tool(
   get_current_time,
-  "Gets the current time in the given time zone.",
-  tz = ellmer::type_string(
-    "The time zone to get the current time in. Defaults to `\"UTC\"`.",
-    required = FALSE
+  name = "get_current_time",
+  description = "Gets the current time in the given time zone.",
+  arguments = list(
+    tz = ellmer::type_string(
+      "The time zone to get the current time in. Defaults to `\"UTC\"`.",
+      required = FALSE
+    )
   )
 )

@@ -76,9 +76,12 @@ tool_duckduckgo_answer <- ellmer::tool(
   function(query) {
     duckduckgo_answer(query)[["Abstract"]]
   },
-  "Call DuckDuckGo Instant Answer API",
-  query = ellmer::type_string(
-    "The DuckDuckGo Search query string",
-    required = TRUE
+  name = "duckduckgo_answer",
+  description = "Call DuckDuckGo Instant Answer API",
+  arguments = list(
+    query = ellmer::type_string(
+      "The DuckDuckGo Search query string",
+      required = TRUE
+    )
   )
 )

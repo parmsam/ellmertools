@@ -38,13 +38,19 @@ call_mini_chat <- function(prompt, system_prompt = NA, .model = "gpt-4o-mini", .
 #' @export
 tool_call_mini_chat <- ellmer::tool(
   call_mini_chat,
-  "Calls an ellmer gpt-4o mini chat instance based on a given prompt.",
-  prompt = ellmer::type_string(
-    "The prompt to send to the mini chat instance.",
-    required = TRUE
-  ),
-  system_prompt = ellmer::type_string(
-    "An optional system prompt to set for the mini chat instance.",
-    required = FALSE
+  name = "call_mini_chat",
+  description = "Calls an ellmer gpt-4o mini chat instance based on a given prompt.",
+  arguments = list(
+    prompt = ellmer::type_string(
+      "The prompt to send to the mini chat instance.",
+      required = TRUE
+    ),
+    system_prompt = ellmer::type_string(
+      "An optional system prompt to set for the mini chat instance.",
+      required = FALSE
+    ),
+    .model = ellmer::type_ignore(),
+    .chat = ellmer::type_ignore(),
+    .tools = ellmer::type_ignore()
   )
 )

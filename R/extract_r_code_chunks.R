@@ -60,9 +60,12 @@ extract_r_code_chunks <- function(markdown_text) {
 #' @export
 tool_extract_r_code_chunks <- ellmer::tool(
   extract_r_code_chunks,
-  "Extracts R code chunks from a Markdown document.",
-  markdown_text = ellmer::type_string(
-    "A character string of Markdown content, possibly including R code blocks.",
-    required = TRUE
+  name = "extract_r_code_chunks",
+  description = "Extracts R code chunks from a Markdown document.",
+  arguments = list(
+    markdown_text = ellmer::type_string(
+      "A character string of Markdown content, possibly including R code blocks.",
+      required = TRUE
+    )
   )
 )

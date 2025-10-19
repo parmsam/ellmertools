@@ -47,9 +47,12 @@ pluck_existing_fields <- function(x, fields, default = NA) {
 #' @export
 tool_get_current_location <- ellmer::tool(
   get_current_location,
-  "Gets the current approximate location based on public IP address.",
-  api_endpoint = ellmer::type_string(
-    "The API endpoint to use for fetching the current location. Defaults to `\"https://ipinfo.io/json\"`.",
-    required = FALSE
+  name = "get_current_location",
+  description = "Gets the current approximate location based on public IP address.",
+  arguments = list(
+    api_endpoint = ellmer::type_string(
+      "The API endpoint to use for fetching the current location. Defaults to `\"https://ipinfo.io/json\"`.",
+      required = FALSE
+    )
   )
 )

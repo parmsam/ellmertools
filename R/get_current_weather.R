@@ -73,23 +73,26 @@ get_current_forecast <- function(lat, lon, forecast_type = "general", forecast_d
 #' @export
 tool_get_current_forecast <- ellmer::tool(
   get_current_forecast,
-  "Fetches weather forecast data from the National Weather Service
+  name = "get_current_forecast",
+  description = "Fetches weather forecast data from the National Weather Service
 based on latitude and longitude.",
-  lat = ellmer::type_number(
-    "Latitude in decimal degrees of the location (e.g., 40.886).",
-    required = TRUE
-  ),
-  lon = ellmer::type_number(
-    "Longitude in decimal degrees of the location (e.g., -81.416).",
-    required = TRUE
-  ),
-  forecast_type = ellmer::type_string(
-    "Forecast frequency granularity which can be either 'general' (default) or 'hourly'.",
-    required = FALSE
-  ),
-  forecast_detail = ellmer::type_string(
-    "Forecast level of detail which can be a concise summary or a full description. It can be either 'short' (default) or 'detailed'.",
-    required = FALSE
+  arguments = list(
+    lat = ellmer::type_number(
+      "Latitude in decimal degrees of the location (e.g., 40.886).",
+      required = TRUE
+    ),
+    lon = ellmer::type_number(
+      "Longitude in decimal degrees of the location (e.g., -81.416).",
+      required = TRUE
+    ),
+    forecast_type = ellmer::type_string(
+      "Forecast frequency granularity which can be either 'general' (default) or 'hourly'.",
+      required = FALSE
+    ),
+    forecast_detail = ellmer::type_string(
+      "Forecast level of detail which can be a concise summary or a full description. It can be either 'short' (default) or 'detailed'.",
+      required = FALSE
+    )
   )
 )
 
@@ -134,13 +137,16 @@ get_current_temperature <- function(latitude, longitude) {
 #' @export
 tool_get_current_temperature <- ellmer::tool(
   get_current_temperature,
-  "Fetches current temperature and wind speed at 2 meters above ground for a given latitude and longitude using the Open-Meteo API.",
-  latitude = ellmer::type_number(
-    "Latitude in decimal degrees of the location.",
-    required = TRUE
-  ),
-  longitude = ellmer::type_number(
-    "Longitude in decimal degrees of the location.",
-    required = TRUE
+  name = "get_current_temperature",
+  description = "Fetches current temperature and wind speed at 2 meters above ground for a given latitude and longitude using the Open-Meteo API.",
+  arguments = list(
+    latitude = ellmer::type_number(
+      "Latitude in decimal degrees of the location.",
+      required = TRUE
+    ),
+    longitude = ellmer::type_number(
+      "Longitude in decimal degrees of the location.",
+      required = TRUE
+    )
   )
 )

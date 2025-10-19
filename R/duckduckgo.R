@@ -246,10 +246,16 @@ DuckDuckGoSearch <- R6::R6Class(
 #' @export
 tool_duckduckgo_search <- ellmer::tool(
   DuckDuckGoSearch$new()$search_text_html,
-  "Search DuckDuckGo for text and return results.",
-  keywords = ellmer::type_string(
-    "The search keywords",
-    required = TRUE
+  name = "duckduckgo_search",
+  description = "Search DuckDuckGo for text and return results.",
+  arguments = list(
+    keywords = ellmer::type_string(
+      "The search keywords",
+      required = TRUE
+    ),
+    region = ellmer::type_ignore(),
+    timelimit = ellmer::type_ignore(),
+    max_results = ellmer::type_ignore()
   )
 )
 
@@ -258,9 +264,16 @@ tool_duckduckgo_search <- ellmer::tool(
 #' @export
 tool_duckduckgo_news <- ellmer::tool(
   DuckDuckGoSearch$new()$search_news,
-  "Search DuckDuckGo for news articles and return results.",
-  keywords = ellmer::type_string(
-    "The search keywords",
-    required = TRUE
+  name = "duckduckgo_news",
+  description = "Search DuckDuckGo for news articles and return results.",
+  arguments = list(
+    keywords = ellmer::type_string(
+      "The search keywords",
+      required = TRUE
+    ),
+    region = ellmer::type_ignore(),
+    timelimit = ellmer::type_ignore(),
+    max_results = ellmer::type_ignore(),
+    safesearch = ellmer::type_ignore()
   )
 )

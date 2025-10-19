@@ -17,14 +17,17 @@ bookmark_save <- function(name, content) {
 #' @export
 tool_bookmark_save <- ellmer::tool(
   bookmark_save,
-  "Save or update a named bookmark with some text content.",
-  name = ellmer::type_string(
-    "The name of the bookmark",
-    required = TRUE
-  ),
-  content = ellmer::type_string(
-    "The text to save in the bookmark",
-    required = TRUE
+  name = "bookmark_save",
+  description = "Save or update a named bookmark with some text content.",
+  arguments = list(
+    name = ellmer::type_string(
+      "The name of the bookmark",
+      required = TRUE
+    ),
+    content = ellmer::type_string(
+      "The text to save in the bookmark",
+      required = TRUE
+    )
   )
 )
 
@@ -46,7 +49,8 @@ bookmark_list <- function() {
 #' @export
 tool_bookmark_list <- ellmer::tool(
   bookmark_list,
-  "List all bookmark names."
+  name = "bookmark_list",
+  description = "List all bookmark names."
 )
 
 #' Read the content of a specific bookmark by name
@@ -70,9 +74,12 @@ bookmark_read <- function(name){
 #' @export
 tool_bookmark_read <- ellmer::tool(
   bookmark_read,
-  "Read the content of a specific bookmark by name.",
-  name = ellmer::type_string(
-    "The name of the bookmark to read",
-    required = TRUE
+  name = "bookmark_read",
+  description = "Read the content of a specific bookmark by name.",
+  arguments = list(
+    name = ellmer::type_string(
+      "The name of the bookmark to read",
+      required = TRUE
+    )
   )
 )

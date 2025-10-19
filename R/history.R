@@ -42,10 +42,13 @@ history_append <- function(entry, path = "history.md", timestamp = TRUE) {
 #' @export
 tool_history_read <- ellmer::tool(
   history_read,
-  "Read the contents of the chat history markdown file.",
-  path = ellmer::type_string(
-    "Path to the chat history markdown file. Defaults to 'history.md' in the working directory.",
-    required = FALSE
+  name = "history_read",
+  description = "Read the contents of the chat history markdown file.",
+  arguments = list(
+    path = ellmer::type_string(
+      "Path to the chat history markdown file. Defaults to 'history.md' in the working directory.",
+      required = FALSE
+    )
   )
 )
 
@@ -56,14 +59,17 @@ tool_history_read <- ellmer::tool(
 #' @export
 tool_history_write <- ellmer::tool(
   history_write,
-  "Write content to the chat history markdown file, overwriting any existing content.",
-  content = ellmer::type_string(
-    "The content to write to the chat history file.",
-    required = TRUE
-  ),
-  path = ellmer::type_string(
-    "Path to the chat history markdown file. Defaults to 'history.md'.",
-    required = FALSE
+  name = "history_write",
+  description = "Write content to the chat history markdown file, overwriting any existing content.",
+  arguments = list(
+    content = ellmer::type_string(
+      "The content to write to the chat history file.",
+      required = TRUE
+    ),
+    path = ellmer::type_string(
+      "Path to the chat history markdown file. Defaults to 'history.md'.",
+      required = FALSE
+    )
   )
 )
 
@@ -74,17 +80,20 @@ tool_history_write <- ellmer::tool(
 #' @export
 tool_history_append <- ellmer::tool(
   history_append,
-  "Append a new markdown entry to the chat history file, with an optional timestamp.",
-  entry = ellmer::type_string(
-    "The entry to append to the chat history file.",
-    required = TRUE
-  ),
-  path = ellmer::type_string(
-    "Path to the chat history markdown file. Defaults to 'history.md'.",
-    required = FALSE
-  ),
-  timestamp = ellmer::type_boolean(
-    "Whether to prepend a timestamp to the entry. Defaults to TRUE.",
-    required = FALSE
+  name = "history_append",
+  description = "Append a new markdown entry to the chat history file, with an optional timestamp.",
+  arguments = list(
+    entry = ellmer::type_string(
+      "The entry to append to the chat history file.",
+      required = TRUE
+    ),
+    path = ellmer::type_string(
+      "Path to the chat history markdown file. Defaults to 'history.md'.",
+      required = FALSE
+    ),
+    timestamp = ellmer::type_boolean(
+      "Whether to prepend a timestamp to the entry. Defaults to TRUE.",
+      required = FALSE
+    )
   )
 )

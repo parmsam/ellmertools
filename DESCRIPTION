@@ -13,7 +13,7 @@ Imports:
     httr2,
     pins,
     purrr,
-    ellmer,
+    ellmer (> 0.3.2),
     rlang,
     tibble,
     clipr,

@@ -42,10 +42,13 @@ memory_append <- function(entry, path = "memory.md", timestamp = TRUE) {
 #' @export
 tool_memory_read <- ellmer::tool(
   memory_read,
-  "Read the contents of the memory markdown file.",
-  path = ellmer::type_string(
-    "Path to the memory markdown file. Defaults to 'memory.md' in the working directory.",
-    required = FALSE
+  name = "memory_read",
+  description = "Read the contents of the memory markdown file.",
+  arguments = list(
+    path = ellmer::type_string(
+      "Path to the memory markdown file. Defaults to 'memory.md' in the working directory.",
+      required = FALSE
+    )
   )
 )
 
@@ -56,14 +59,17 @@ tool_memory_read <- ellmer::tool(
 #' @export
 tool_memory_write <- ellmer::tool(
   memory_write,
-  "Write content to the memory markdown file, overwriting any existing content.",
-  content = ellmer::type_string(
-    "The content to write to the memory file.",
-    required = TRUE
-  ),
-  path = ellmer::type_string(
-    "Path to the memory markdown file. Defaults to 'memory.md'.",
-    required = FALSE
+  name = "memory_write",
+  description = "Write content to the memory markdown file, overwriting any existing content.",
+  arguments = list(
+    content = ellmer::type_string(
+      "The content to write to the memory file.",
+      required = TRUE
+    ),
+    path = ellmer::type_string(
+      "Path to the memory markdown file. Defaults to 'memory.md'.",
+      required = FALSE
+    )
   )
 )
 
@@ -74,17 +80,20 @@ tool_memory_write <- ellmer::tool(
 #' @export
 tool_memory_append <- ellmer::tool(
   memory_append,
-  "Append a new markdown entry to the memory file, with an optional timestamp.",
-  entry = ellmer::type_string(
-    "The entry to append to the memory file.",
-    required = TRUE
-  ),
-  path = ellmer::type_string(
-    "Path to the memory markdown file. Defaults to 'memory.md'.",
-    required = FALSE
-  ),
-  timestamp = ellmer::type_boolean(
-    "Whether to prepend a timestamp to the entry. Defaults to TRUE.",
-    required = FALSE
+  name = "memory_append",
+  description = "Append a new markdown entry to the memory file, with an optional timestamp.",
+  arguments = list(
+    entry = ellmer::type_string(
+      "The entry to append to the memory file.",
+      required = TRUE
+    ),
+    path = ellmer::type_string(
+      "Path to the memory markdown file. Defaults to 'memory.md'.",
+      required = FALSE
+    ),
+    timestamp = ellmer::type_boolean(
+      "Whether to prepend a timestamp to the entry. Defaults to TRUE.",
+      required = FALSE
+    )
   )
 )

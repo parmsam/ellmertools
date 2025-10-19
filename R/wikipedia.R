@@ -107,10 +107,13 @@ tool_wikipedia_get_page_summary <- ellmer::tool(
   function(title){
     wikipedia_get_page_summary(title)[["extract"]]
   },
-  "Get a summary of a Wikipedia page by title.",
-  title = ellmer::type_string(
-    "The title of the Wikipedia page to summarize. This should be the exact title as it appears on Wikipedia, including spaces and special characters. For example, 'Albert Einstein' or 'Python (programming language)'.",
-    required = TRUE
+  name = "wikipedia_get_page_summary",
+  description = "Get a summary of a Wikipedia page by title.",
+  arguments = list(
+    title = ellmer::type_string(
+      "The title of the Wikipedia page to summarize. This should be the exact title as it appears on Wikipedia, including spaces and special characters. For example, 'Albert Einstein' or 'Python (programming language)'.",
+      required = TRUE
+    )
   )
 )
 
@@ -121,9 +124,12 @@ tool_wikipedia_get_page_markdown <- ellmer::tool(
   function(title){
     wikipedia_get_page_html(title)
   },
-  "Get the full content of a Wikipedia page in Markdown format.",
-  title = ellmer::type_string(
-    "The title of the Wikipedia page to retrieve. This should be the exact title as it appears on Wikipedia, including spaces and special characters. For example, 'Albert Einstein' or 'Python (programming language)'.",
-    required = TRUE
+  name = "wikipedia_get_page_markdown",
+  description = "Get the full content of a Wikipedia page in Markdown format.",
+  arguments = list(
+    title = ellmer::type_string(
+      "The title of the Wikipedia page to retrieve. This should be the exact title as it appears on Wikipedia, including spaces and special characters. For example, 'Albert Einstein' or 'Python (programming language)'.",
+      required = TRUE
+    )
   )
 )

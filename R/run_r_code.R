@@ -23,9 +23,12 @@ run_r_code <- function(code_string) {
 #' @export
 tool_run_r_code <- ellmer::tool(
   run_r_code,
-  "Execute R code provided as a string and return the result.",
-  code_string = ellmer::type_string(
-    "The R code to execute",
-    required = TRUE
+  name = "run_r_code",
+  description = "Execute R code provided as a string and return the result.",
+  arguments = list(
+    code_string = ellmer::type_string(
+      "The R code to execute",
+      required = TRUE
+    )
   )
 )

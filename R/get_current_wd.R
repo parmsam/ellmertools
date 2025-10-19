@@ -11,5 +11,6 @@ get_current_wd <- function() {
 #' @export
 tool_get_current_wd <- ellmer::tool(
   get_current_wd,
-  "Encodes all the text files in the current working directory into JSON format. This is useful to read in a codebase that is located in a predefined directory."
+  name = "get_current_wd",
+  description = "Encodes all the text files in the current working directory into JSON format. This is useful to read in a codebase that is located in a predefined directory."
 )
